@@ -1,0 +1,46 @@
+@charset "utf-8";
+
+/* 全体のスタイル */
+* {
+  box-sizing: border-box;
+}
+
+body {
+  width: 100%;
+  background-image: url(../img/bg01.jpg);
+  background-size: cover;
+  color: #404040;
+}
+
+/* コンテンツ全体 */
+.wrapper {
+  width: 420px;
+  height: 800px;
+  margin: 0 auto;
+  background: #fff;
+}
+
+/* 隠すためのクラス */
+.delete {
+  display: none;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0;
+}
+
+li {
+  list-style: none;
+}
+
+button {
+  width: 200px;
+  height: 50px;
+  margin: 10px;
+}
+
+
