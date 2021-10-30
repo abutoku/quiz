@@ -1,6 +1,6 @@
 @charset "utf-8";
 
-/* 全体のスタイル */
+/* ////////////全体のスタイル /////////////*/
 * {
   box-sizing: border-box;
 }
@@ -12,12 +12,18 @@ body {
   color: #404040;
 }
 
-/* コンテンツ全体 */
+a { 
+  text-decoration: none; 
+  color: #fff;
+}
+
+/* //////////////コンテンツ全体 ////////////*/
 .wrapper {
   width: 420px;
   height: 800px;
   margin: 0 auto;
-  background: #fff;
+  padding: 12px;
+  background: #F0F0F0;
 }
 
 /* 隠すためのクラス */
@@ -25,6 +31,58 @@ body {
   display: none;
 }
 
+/* /////////////index.htmlのスタイル /////////*/
+.toppage_img {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.toppage_img img{
+  width: 70%;
+  margin-top: 24px;
+  margin-bottom: 12px;
+}
+
+
+.help_btn {
+  width: 60%;
+  height: 48px;
+  background-color: gray;
+  border-radius: 20px;
+  margin: 12px auto;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.start_btn {
+  width: 60%;
+  height: 56px;
+  border-radius: 20px;
+  margin: 12px auto;
+  background-color: gray;
+  font-size: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+/* /////////////問題部分 ///////////////*/
+#question {
+  margin-top: 12px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+}
+
+#question img {
+  width: 70%;
+}
+
+/* 回答ボタン */
 ul {
   display: flex;
   flex-direction: column;

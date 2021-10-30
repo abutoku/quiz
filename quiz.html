@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Quiz</title>
-
+  <link rel="shortcut icon" href="./img/favicon.ico">
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css">
 
@@ -15,14 +15,19 @@
 <body>
   <main>
     <div class="wrapper">
-      <h1 id="quiz_number">第?問</h1>
+      <!-- 第何問目かを表示 -->
+      <h1 id="quiz_number"></h1>
+      <!-- 問題の見出しを表示 -->
+      <h2 id="quiz_h2"></h2>
+
+      <!-- 問題の写真を表示 -->
+      <div id="question"></div>
     
-      <div id="umiushi_img"></div>
-    
-      <ul>
+      <!-- 回答ボタン部分 -->
+      <ul id="answer_list">
+        <li><button id="answer_0"></button></li>
         <li><button id="answer_1"></button></li>
         <li><button id="answer_2"></button></li>
-        <li><button id="answer_3"></button></li>
       </ul>
     
       <div id=result></div>
