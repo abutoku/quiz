@@ -14,7 +14,23 @@
 
 <body>
   <main>
+
+    <div id="result_true" class="result_contents delete">
+     <div class="result_inner">
+        <p>正解!!</p>
+        <div id="close_true" class="next_btn">NEXT</div>
+     </div>
+    </div>
+
+    <div id="result_false" class="result_contents delete">
+     <div class="result_inner">
+        <p>はずれ!!</p>
+        <div id="close_false" class="next_btn">NEXT</div>
+     </div>
+    </div>
+
     <div class="wrapper">
+
       <!-- 第何問目かを表示 -->
       <h1 id="quiz_number"></h1>
       <!-- 問題の見出しを表示 -->
@@ -31,7 +47,8 @@
       </ul>
     
       <div id=result></div>
-    </div>
+
+    </div><!--wrapperここまで-->
 
   </main>
 

@@ -43,11 +43,10 @@ a {
   margin-bottom: 12px;
 }
 
-
 .help_btn {
   width: 60%;
   height: 48px;
-  background-color: gray;
+  background-color: #404040;
   border-radius: 20px;
   margin: 12px auto;
   font-size: 24px;
@@ -61,14 +60,12 @@ a {
   height: 56px;
   border-radius: 20px;
   margin: 12px auto;
-  background-color: gray;
+  background-color: #404040;
   font-size: 24px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-
-
 
 /* /////////////問題部分 ///////////////*/
 #question {
@@ -82,7 +79,7 @@ a {
   width: 70%;
 }
 
-/* 回答ボタン */
+/*///////////// 回答ボタン ////////////////*/
 ul {
   display: flex;
   flex-direction: column;
@@ -99,6 +96,35 @@ button {
   width: 200px;
   height: 50px;
   margin: 10px;
+  border: 2px solid #404040;
+  background: #fff;
+  cursor: pointer;
 }
 
+/*/////////// 結果部分 ///////////*/
 
+.result_contents {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background:rgba(0, 0, 0, 0.7);
+}
+
+.result_inner {
+  margin: 32px auto;
+  width: 320px;
+  height: 560px;
+  background: #fff;
+}
+
+.result_inner p {
+  font-size: 56px;
+}
+
+ .next_btn {
+   width: 50%;
+   height: 36px;
+   background-color: #404040;
+   color: #fff;
+   cursor: pointer;
+ }
