@@ -14,30 +14,52 @@
 
 <body>
   <main>
-
-    <div id="result_true" class="result_contents delete">
-     <div class="result_inner">
+    <!-- 正解表示 -->
+    <div id="result_true" class="modal_screen delete">
+      <div class="result_inner">
         <p>正解!!</p>
         <div id="close_true" class="next_btn">NEXT</div>
-     </div>
+      </div>
     </div>
 
-    <div id="result_false" class="result_contents delete">
-     <div class="result_inner">
+    <!-- 不正解表示 -->
+    <div id="result_false" class="modal_screen delete">
+      <div class="result_inner">
         <p>はずれ!!</p>
         <div id="close_false" class="next_btn">NEXT</div>
-     </div>
+      </div>
     </div>
 
-    <div class="wrapper">
+    <div id="info_name" class="modal_screen delete">
+      <div id="name_inner">
+        <p id="name"></p>
+        <div id="close_name"></div>
+      </div>
+    </div>
 
-      <!-- 第何問目かを表示 -->
-      <h1 id="quiz_number"></h1>
+
+
+    <div class="wrapper">
+      <div>
+        <!-- 第何問目かを表示 -->
+        <h1 id="quiz_number"></h1>
+        <!-- 図鑑ボタン -->
+        <div id="gallery_btn">図鑑</div>
+        <!-- 色の選択部分 -->
+        <select id="color_select"></select>
+        <!-- 文字検索部分 -->
+        <input type="text" id="name_in">
+        
+      </div>
       <!-- 問題の見出しを表示 -->
       <h2 id="quiz_h2"></h2>
 
       <!-- 問題の写真を表示 -->
       <div id="question"></div>
+      <!-- ギャラリー表示部分 -->
+      <div id=image.contents>
+        <div id="gallery_img"></div> 
+      </div>
     
       <!-- 回答ボタン部分 -->
       <ul id="answer_list">
@@ -45,7 +67,8 @@
         <li><button id="answer_1"></button></li>
         <li><button id="answer_2"></button></li>
       </ul>
-    
+      
+      <!-- 結果表示部分 -->
       <div id=result></div>
 
     </div><!--wrapperここまで-->

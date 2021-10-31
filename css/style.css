@@ -103,7 +103,7 @@ button {
 
 /*/////////// 結果部分 ///////////*/
 
-.result_contents {
+.modal_screen {
   position: fixed;
   width: 100%;
   height: 100%;
@@ -121,10 +121,53 @@ button {
   font-size: 56px;
 }
 
- .next_btn {
-   width: 50%;
-   height: 36px;
-   background-color: #404040;
-   color: #fff;
-   cursor: pointer;
- }
+.next_btn {
+  width: 50%;
+  height: 36px;
+  background-color: #404040;
+  color: #fff;
+  cursor: pointer;
+}
+
+
+/* /////////ギャラリーモード /////////*/
+#gallery_btn{
+  margin-bottom: 32px;
+}
+
+#gallery_img{
+  display: flex;
+  flex-wrap:wrap
+}
+#gallery_img img {
+  width: 30%;
+  margin-right: 12px;
+  margin-bottom: 12px;  
+}
+
+#gallery_img img:hover {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+/*////////// 名前表示 /////////*/
+#name_inner {
+  display: flex;
+  justify-content: center; 
+  align-items: center; 
+  
+  margin: 32px auto;
+  width: 320px;
+  height: 560px;
+}
+
+#name {
+  font-size:32px;
+  font-weight: bold;
+  color:#fff
+}
+
+#close_name {
+  text-align: center;
+}
+
