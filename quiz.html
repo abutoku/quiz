@@ -18,14 +18,16 @@
     <div id="result_true" class="modal_screen delete">
       <div class="result_inner">
         <p>正解!!</p>
+        <img src="./img/ok.png" alt="正解">
         <div id="close_true" class="next_btn">NEXT</div>
       </div>
     </div>
 
     <!-- 不正解表示 -->
     <div id="result_false" class="modal_screen delete">
-      <div class="result_inner">
+      <div class="result_inner ">
         <p>はずれ!!</p>
+        <img src="./img/ng.png" alt="不正解">
         <div id="close_false" class="next_btn">NEXT</div>
       </div>
     </div>
@@ -49,6 +51,8 @@
         <select id="color_select"></select>
         <!-- 文字検索部分 -->
         <input type="text" id="name_in">
+        <!-- クリアボタン -->
+        <div id="imgclear_btn">clear</div>
         
       </div>
       <!-- 問題の見出しを表示 -->
@@ -77,6 +81,8 @@
 
   <!-- jquery読み込み -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+
 
   <!-- JavaScript読み込み -->
   <script src="./js/main.js"></script>

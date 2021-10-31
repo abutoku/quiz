@@ -1,5 +1,8 @@
 @charset "utf-8";
 
+/* フォント読み込み */
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
 /* ////////////全体のスタイル /////////////*/
 * {
   box-sizing: border-box;
@@ -19,8 +22,8 @@ a {
 
 /* //////////////コンテンツ全体 ////////////*/
 .wrapper {
-  width: 420px;
-  height: 800px;
+  width: 680px;
+  /* height: 800px; */
   margin: 0 auto;
   padding: 12px;
   background: #F0F0F0;
@@ -32,21 +35,28 @@ a {
 }
 
 /* /////////////index.htmlのスタイル /////////*/
+
+.top_header {
+  font-size: 72px;
+  margin-left: 24px;
+  font-family: 'Fredoka One', cursive;
+}
+
 .toppage_img {
   display: flex;
   justify-content: flex-end;
 }
 
 .toppage_img img{
-  width: 70%;
-  margin-top: 24px;
+  width: 65%;
   margin-bottom: 12px;
 }
 
 .help_btn {
   width: 60%;
   height: 48px;
-  background-color: #404040;
+  background-color: #03588C;
+  box-shadow: 3px 3px #024059;
   border-radius: 20px;
   margin: 12px auto;
   font-size: 24px;
@@ -60,7 +70,8 @@ a {
   height: 56px;
   border-radius: 20px;
   margin: 12px auto;
-  background-color: #404040;
+  background-color: #03588C;
+  box-shadow: 3px 3px #024059;
   font-size: 24px;
   display: flex;
   justify-content: center;
@@ -76,10 +87,19 @@ a {
 }
 
 #question img {
-  width: 70%;
+  width: 60%;
+}
+
+#answer_2 {
+  margin-bottom: 200px;
 }
 
 /*///////////// 回答ボタン ////////////////*/
+#quiz_number {
+  font-family: 'Fredoka One', cursive;
+  font-size: 48px;
+}
+
 ul {
   display: flex;
   flex-direction: column;
@@ -93,7 +113,7 @@ li {
 }
 
 button {
-  width: 200px;
+  width: 400px;
   height: 50px;
   margin: 10px;
   border: 2px solid #404040;
@@ -112,21 +132,40 @@ button {
 
 .result_inner {
   margin: 32px auto;
-  width: 320px;
-  height: 560px;
-  background: #fff;
+  width: 480px;
+  height: 640px;
+  background: #F0F0F0;
 }
 
 .result_inner p {
+  font-weight: bold;
   font-size: 56px;
+  text-align: center;
+  padding-top: 32px;
+  margin-bottom: 24px;
+  
+}
+
+.result_inner img {
+  width: 70%;
+  margin: 0 auto;
 }
 
 .next_btn {
-  width: 50%;
-  height: 36px;
+  width: 70%;
+  line-height: 56px;
+  margin: 12px auto;
+  border-radius: 10px;
   background-color: #404040;
   color: #fff;
   cursor: pointer;
+  text-align: center;
+}
+
+.next_btn:hover,
+.help_btn:hover,
+.start_btn:hover {
+  opacity: 0.8;
 }
 
 
@@ -135,13 +174,15 @@ button {
   margin-bottom: 32px;
 }
 
+
 #gallery_img{
   display: flex;
+  justify-content: space-around;
   flex-wrap:wrap
 }
+
 #gallery_img img {
   width: 30%;
-  margin-right: 12px;
   margin-bottom: 12px;  
 }
 
@@ -171,3 +212,35 @@ button {
   text-align: center;
 }
 
+
+
+
+/* ////////スマートフォン用///////////// */
+
+@media screen and (max-width:520px){
+  
+  /* index.html */
+  .wrapper {
+    width: 420px;
+  }
+
+  .start_btn{
+    margin-bottom: 200px;
+  }
+
+  /* quiz: .html */
+
+button {
+  width: 300px;
+}
+
+#question img {
+  width: 70%;
+}
+
+.result_inner {
+  width: 320px;
+  height: 560px;
+}
+
+}

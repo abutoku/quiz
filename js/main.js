@@ -1,5 +1,6 @@
 'use strict'
 
+// クイズの配列
 const umiushi_quiz = [
    {
       question: './img/img_00.jpg',
@@ -11,25 +12,25 @@ const umiushi_quiz = [
       question: './img/img_01.jpg',
       answers: ['アオウミウシ', 'アオミノウミウシ', 'マオウミウシ'],
       correct: 0,
-      color:'blue',
+      color: 'blue',
    },
    {
       question: './img/img_02.jpg',
       answers: ['アミメウミウシ', 'コモンウミウシ', 'サラサウミウシ'],
       correct: 2,
-      color:'white'
+      color: 'white',
    },
    {
       question: './img/img_03.jpg',
       answers: ['キヌハダウミウシ', 'キイロウミウシ', 'キイロウミウミ'],
       correct: 1,
-      color:'yellow',
+      color: 'yellow',
    },
    {
       question: './img/img_04.jpg',
       answers: ['マンリョウウミウシ', 'ミヤコウミウシ', 'ニシキウミウシ'],
       correct: 1,
-      color:'brown',
+      color: 'brown',
    },
    {
       question: './img/img_05.jpg',
@@ -232,14 +233,22 @@ $('#color_select').html(select_color);
 
 
 //ギャラリーボタンを消しておく
-//$('#gallery_btn').hide();
+$('#gallery_btn').hide();
+//色選択を消しておく
+$('#color_select').hide();
+//文字検索を消しておく
+$('#name_in').hide();
+//クリアボタンを消しておく
+$('#imgclear_btn').hide();
+
+/////////////////////クイズの動き///////////////////////
 
 
 //結果判定を入れていく配列
 let result = [];
 
 //第何問目かを表示
-$('#quiz_number').text(`第${result.length +1}問`);
+$('#quiz_number').text(`Question${result.length +1}`);
 //問題の見出しを表示
 $('#quiz_h2').text('このウミウシの名前は？');
 
@@ -280,13 +289,13 @@ $('button').on('click', function (e) {  //クリックイベントの値を取�
    }
       //配列resultとquiz.lengthの数が一致したら
       //if (result.length === umiushi_quiz.length) {
-      if (result.length === 5) {
+      if (result.length === 2) {
       
       $('#quiz_number').hide();//ヘッダーを消す
       $('#quiz_h2').text('終了！！！');//終了〜！
       $('#answer_list').hide();//imgを消す
       $('#question').hide();//ulを消す
-      $('#gallery_btn').show();
+      
       
       //結果が'ok'のものだけを配列win_countsに入れる
       const win_counts = (result.filter((x) => {
@@ -296,10 +305,14 @@ $('button').on('click', function (e) {  //クリックイベントの値を取�
       //結果にokの数を表示
       $('#result').text(`SCORE${win_counts.length}/${umiushi_quiz.length}`);
       
-   } else {
+      //ギャラリーボタンを出す
+      $('#gallery_btn').show();
+      
+      
+   } else { //まだ問題が残っているとき
 
       //第何問目かを更新
-      $('#quiz_number').text(`第${result.length + 1}問`);
+         $('#quiz_number').text(`Question.${result.length + 1}`);
       //問題の写真を更新
       $('#question').html('<img src="' + umiushi_quiz[result.length].question + '">');
    
@@ -311,29 +324,39 @@ $('button').on('click', function (e) {  //クリックイベントの値を取�
    }
 
 });
+
+
+////////////////////////////図鑑の動き//////////////////
+
 //ギャラリーボタンが押されたら
 $('#gallery_btn').on('click', function () {
    $('.wrapper').css('background', '#404040'); //背景色を変更
    $('.wrapper').css('color', '#fff'); //文字を白にする
-   $('#answer_list').hide(); //imgを消す
-   $('#question').hide(); //ulを消す
-   $('#quiz_number').hide();
-   $('#quiz_h2').hide('');
+   $('#quiz_h2').hide();//終了を消す
+   $('#result').hide();//SCOREを消す
+   $('.wrapper').css('height','1600px');
 
+   //色選択を表示
+   $('#color_select').show();
+   //文字検索を表示
+   $('#name_in').show();
+   //クリアボタンを表示
+   $('#imgclear_btn').show();
+   
    const images = [];//画像表示用の配列を用意
 
    //umiushi_quizのimgをhtmlにして配列に入れる
    for (let i = 0; i < umiushi_quiz.length; i++) {
-      images.push('<img src="' + umiushi_quiz[i].question + '" class="umiushi_img">');      
+      images.push('<img src="' + umiushi_quiz[i].question + '" class="umiushi_img">');
    }
-  //imgだけ入った配列を・・・ 
+   //imgだけ入った配列を・・・ 
    $('#gallery_img').html(images).hide(); //htmlに入れて一度隠す
-   $('#gallery_img').slideDown(1000); //表示
+   $('#gallery_img').fadeIn(1500); //表示
 
 });
 
 //ウミウシの画像がクリックされたら
-$('body').on('click', '.umiushi_img',function (){
+$('body').on('click', '.umiushi_img', function () {
    let indexNumber = $(this).index()
    let i = umiushi_quiz[indexNumber].correct;
    console.log(umiushi_quiz[indexNumber].answers[i]);
@@ -345,15 +368,17 @@ $('body').on('click', '#info_name', function () {
    $('#info_name').addClass('delete');
 });
 
-///////色が選択されたら
+///////色が選択されたら/////////////
+
 $('body').change('#color_seek', function () {
+   
    //選択された値を取得
    let sel_color = $('select').val();
    //値と同じものを配列に入れる
    const selected = umiushi_quiz.filter((x) => {
       return x.color === sel_color;
    });
-
+   console.log(selected);
 
    const images = [];//画像表示用の配列を用意
 
@@ -363,15 +388,48 @@ $('body').change('#color_seek', function () {
    }
 
    $('#gallery_img').html(images).hide(); //htmlに入れて一度隠す
-   $('#gallery_img').slideDown(1000); //表示
+   $('#gallery_img').fadeIn(1500); //表示
 
    
 });///////色が選択されたら、ここまで
 
+
 //////////名前検索/////////////////
 
-$('#name_in').keyup(function () {
-   console.log('ok');
+//ひらがなをカタカナに変換
+function hiraToKana(str) {
+   return str.replace(/[\u3041-\u3096]/g, function (match) {
+      var chr = match.charCodeAt(0) + 0x60;
+      return String.fromCharCode(chr);
+   });
+}
+
+$('#name_in').keyup(function () { //キーが上がったら
+   let in_txt = $('#name_in').val(); //入力されたものを変数へ代入
+   let str = hiraToKana(in_txt); //カタカナに変換
+
+   console.log(str);//入力されたもののカタカナ
+
+   const selected = umiushi_quiz.filter((x) => {
+      let i = x.correct; //正解の名前を見つける
+      let true_name = x.answers[i];  //正解の名前を変数に代入
+      if (true_name.includes(str)) {
+         return x;
+      }
+   });
+
+   console.log(selected);//一致する文字列がある変数
+
+   const images = [];//画像表示用の配列を用意
+
+   //selectedのimgをhtmlにして配列に入れる
+   for (let i = 0; i < selected.length; i++) {
+      images.push('<img src="' + selected[i].question + '" class="umiushi_img">');
+   }
+
+   $('#gallery_img').html(images).hide(); //htmlに入れて一度隠す
+   $('#gallery_img').fadeIn(1500); //表示
+
 });
 
 
