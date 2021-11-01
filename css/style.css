@@ -79,11 +79,22 @@ a {
 }
 
 /* /////////////問題部分 ///////////////*/
+#quiz_header {
+  display: flex;
+  justify-content: space-between;
+}
+
 #question {
   margin-top: 12px;
   margin-bottom: 32px;
   display: flex;
   justify-content: center;
+}
+
+#quiz_time{
+  font-weight: bold;
+  font-size: 56px;
+  margin-right: 30px;
 }
 
 #question img {
@@ -130,6 +141,20 @@ button {
   background:rgba(0, 0, 0, 0.7);
 }
 
+#go_inner {
+  margin: 32px auto;
+  width: 400px;
+  height: 600px;
+  background: #404040;
+  
+}
+
+#go {
+  padding-top: 250px;
+  font-size: 100px;
+  font-family: 'Fredoka One', cursive;
+}
+
 .result_inner {
   margin: 32px auto;
   width: 480px;
@@ -151,27 +176,42 @@ button {
   margin: 0 auto;
 }
 
+#timeup_txt {
+  margin-bottom: 64px;
+}
+
 .next_btn {
   width: 70%;
   line-height: 56px;
   margin: 12px auto;
   border-radius: 10px;
   background-color: #404040;
-  color: #fff;
-  cursor: pointer;
+  color: #fff;  
   text-align: center;
+  font-weight: bold;
 }
 
 .next_btn:hover,
 .help_btn:hover,
-.start_btn:hover {
+.start_btn:hover,
+#gallery_btn:hover {
   opacity: 0.8;
+  cursor: pointer;
+}
+
+.next_btn:active,
+.help_btn:active {
+  box-shadow: none;
+  position: relative;
+  top:3px;
+  left:3px;
 }
 
 
 /* /////////ギャラリーモード /////////*/
 #gallery_btn{
   margin-bottom: 32px;
+  font-size: 56px;
 }
 
 

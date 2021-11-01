@@ -5,15 +5,24 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Quiz</title>
+  <title>umiushiQ</title>
   <link rel="shortcut icon" href="./img/favicon.ico">
   <link rel="stylesheet" href="./css/reset.css">
   <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css">
 
 </head>
 
 <body>
   <main>
+
+    <!-- 最初のスタート画面 -->
+    <div id="go_screen" class="modal_screen ">
+      <div id="go_inner">
+        <p id="go" class="next_btn">GO!!</p>
+      </div>
+    </div>
+
     <!-- 正解表示 -->
     <div id="result_true" class="modal_screen delete">
       <div class="result_inner">
@@ -32,6 +41,16 @@
       </div>
     </div>
 
+    <!-- 時間切れ画面 -->
+    <div id="time_up" class="modal_screen delete">
+      <div class="result_inner">
+        <p id="timeup_txt">時間切れ！</p>
+        <img src="./img/time_over.png" alt="時間切れ">
+        <div id="close_timeup" class="next_btn">NEXT</div>
+      </div>
+    </div>
+    
+    <!-- ウミウシの名前部分 -->
     <div id="info_name" class="modal_screen delete">
       <div id="name_inner">
         <p id="name"></p>
@@ -40,13 +59,17 @@
     </div>
 
 
-
     <div class="wrapper">
       <div>
-        <!-- 第何問目かを表示 -->
-        <h1 id="quiz_number"></h1>
+        <div id="quiz_header">
+          <!-- 第何問目かを表示 -->
+          <h1 id="quiz_number"></h1>
+          <!-- タイマーを表示 -->
+          <p id="quiz_time">5</p>
+        </div>
         <!-- 図鑑ボタン -->
-        <div id="gallery_btn">図鑑</div>
+        <div id="gallery_btn" class="fas fa-book"></div>
+        
         <!-- 色の選択部分 -->
         <select id="color_select"></select>
         <!-- 文字検索部分 -->
