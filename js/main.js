@@ -173,6 +173,18 @@ const umiushi = [
 
 ];////////配列umiushi_quizここまで////////////////
 
+//遊び方を出す
+$('.help_btn').on('click', function () {
+   console.log('click');
+   $('#help_modal').removeClass('delete');
+});
+
+//遊び方を消す
+$('#close_help').on('click', function () {
+   $('#help_modal').addClass('delete');
+});
+
+
 
 /////////色選択ボタンを作成///////////////////////
 
@@ -234,6 +246,8 @@ $('#color_select').html(select_color);
 
 //ギャラリーボタンを消しておく
 $('#gallery_btn').hide();
+//トップボタン消しておく
+$('#top_link').hide();
 //色選択を消しておく
 $('#color_select').hide();
 //文字検索を消しておく
@@ -327,6 +341,7 @@ $('.next_btn').on('click', function () {//goボタン、nextボタンが押さ�
             clearInterval(countStop); //タイマーストップ
             $('#time_up').removeClass('delete'); //時間切れ画面を表示
             result.push('ng');//配列resultに結果を追加
+            ng_ring();
             count_check();//問題が終了しているかのチェック終了していなければ次の問題         
          }
       }
@@ -380,14 +395,15 @@ $('.next_btn').on('click', function () {//goボタン、nextボタンが押さ�
             $("#result_true").removeClass('delete');//一致していれば正解を表示
             result.push('ok'); //配列resultに結果を追加
             //console.log('ok');
+            ok_ring();
          } else {
             $("#result_false").removeClass('delete');//一致していればはずれを表示
             result.push('ng');//配列resultに結果を追加
             //console.log('ng');
+            ng_ring();
          }
          //問題が終了しているかのチェック終了していなければ次の問題
          count_check();
-   
       });
    }
 });///////////////クイズスタートしてからの動きここまで//////////////
@@ -397,15 +413,30 @@ $('.next_btn').on('click', function () {//goボタン、nextボタンが押さ�
 
 ////////////////////////////図鑑の動き////////////////////////////////////////
 
-//ギャラリーボタンが押されたら
-$('#gallery_btn').on('click', function () {
+// すべての画像を表示する関数
+function showAllImage() {
+   const images = [];//画像表示用の配列を用意
+   
+   //umiushi_quizのimgをhtmlにして配列に入れる
+   for (let i = 0; i < umiushi.length; i++) {
+      images.push('<img src="' + umiushi[i].question + '"class="umiushi_img">');
+   }
+   //imgだけ入った配列を・・・ 
+   $('#gallery_img').html(images).hide(); //htmlに入れて一度隠す
+   $('#gallery_img').fadeIn(1500); //表示
+}
+
+
+   //ギャラリーボタンが押されたら
+   $('#gallery_btn').on('click', function () {
    
    $('.wrapper').css('background', '#404040'); //背景色を変更
    $('.wrapper').css('color', '#fff'); //文字を白にする
    $('#quiz_h2').hide();//終了を消す
    $('#result').hide();//SCOREを消す
-   $('.wrapper').css('height','2000px');
-
+   $('.wrapper').css('height', '2000px');
+   //トップボタン表示
+   $('#top_link').show();
    //色選択を表示
    $('#color_select').show();
    //文字検索を表示
@@ -413,17 +444,13 @@ $('#gallery_btn').on('click', function () {
    //クリアボタンを表示
    $('#imgclear_btn').show();
    
-   const images = [];//画像表示用の配列を用意
+   showAllImage();//すべてのイメージを出す
+   });
 
-   //umiushi_quizのimgをhtmlにして配列に入れる
-   for (let i = 0; i < umiushi.length; i++) {
-      images.push('<img src="' + umiushi[i].question + '" class="umiushi_img">');
-   }
-   //imgだけ入った配列を・・・ 
-   $('#gallery_img').html(images).hide(); //htmlに入れて一度隠す
-   $('#gallery_img').fadeIn(1500); //表示
-
-});
+   //クリアボタンが押されたら
+$('#imgclear_btn').on('click', function () {
+   showAllImage();//すべてのイメージを出す
+})
 
 //ウミウシの画像がクリックされたら
 $('body').on('click', '.umiushi_img', function () {
@@ -502,6 +529,16 @@ $('#name_in').keyup(function () { //キーが上がったら
    $('#gallery_img').fadeIn(1500); //表示
 
 });
+
+
+//ボタン効果音の設定
+function ok_ring() {
+   document.getElementById("sound_ok").play();
+}
+//ボタン効果音の設定
+function ng_ring() {
+   document.getElementById("sound_ng").play();
+}
 
 
 

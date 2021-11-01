@@ -14,6 +14,17 @@
 </head>
 
 <body>
+  <!-- 効果音の読み込み -->
+  <audio id="sound_ok" preload="auto">
+    <source src="./audio/ok.mp3" type="audio/mp3">
+  </audio>
+  <audio id="sound_ng">
+    <source src="./audio/ng.mp3" type="audio/wav">
+  </audio>
+  <audio id="sound_ru" preload="auto">
+    <source src="./audio/ruchan.m4a" type="audio/m4a">
+  </audio>
+
   <main>
 
     <!-- 最初のスタート画面 -->
@@ -68,14 +79,19 @@
           <p id="quiz_time">5</p>
         </div>
         <!-- 図鑑ボタン -->
-        <div id="gallery_btn" class="fas fa-book"></div>
+        <div id="gallery">
+          <div id="gallery_btn" class="fas fa-book"></div>
+          <a href="index.html" id="top_link">TOP</a>
+        </div>
         
-        <!-- 色の選択部分 -->
-        <select id="color_select"></select>
-        <!-- 文字検索部分 -->
-        <input type="text" id="name_in">
-        <!-- クリアボタン -->
-        <div id="imgclear_btn">clear</div>
+        <div id="gallery_option">
+          <!-- 色の選択部分 -->
+          <select id="color_select"></select>
+          <!-- 文字検索部分 -->
+          <input type="text" id="name_in">
+          <!-- クリアボタン -->
+          <div id="imgclear_btn">clear</div>
+        </div>
         
       </div>
       <!-- 問題の見出しを表示 -->
