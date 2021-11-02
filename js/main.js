@@ -471,7 +471,7 @@ $('.next_btn').on('click', function () {//goボタン、nextボタンが押さ�
 
 
       //タイマー用の変数を定義（秒数）
-      let time = 5;
+      let time = 10;
 
       //timeから１ずつ減らしていく関数
       function countDown() {
@@ -726,7 +726,4 @@ $('#score_clear').on('click', function () {
    localStorage.removeItem("quiz");
 })
 
-let today = new Date();
-let day = today.getDate();
-console.log(day);
 
