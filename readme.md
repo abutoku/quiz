@@ -1,6 +1,7 @@
 # umiushiQ
 
-## [https://abutoku.github.io/quiz/](https://abutoku.github.io/quiz/)
+## DEMO
+[https://abutoku.github.io/quiz/](https://abutoku.github.io/quiz/)
 
 ## プロダクトの紹介
 
