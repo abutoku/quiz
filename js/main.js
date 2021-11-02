@@ -66,7 +66,7 @@ const umiushi = [
       question: './img/img_10.jpg',
       answers: ['セトリュウグウウミウシ', 'ノトリュウグウウミウシ', 'シマリュウグウウミウシ'],
       correct: 0,
-      color:'blue',
+      color: 'blue',
    },
    {
       question: './img/img_11.jpg',
@@ -78,19 +78,19 @@ const umiushi = [
       question: './img/img_12.jpg',
       answers: ['ダイダイウミウシ', 'イソウミウシ', 'スポンジウミウシ'],
       correct: 1,
-      color:'orange',
+      color: 'orange',
    },
    {
       question: './img/img_13.jpg',
       answers: ['ミツイラメリウミウシ', 'ヨツイラメリウミウシ', 'シラヒメウミウシ'],
       correct: 0,
-      color:'white',
+      color: 'white',
    },
    {
       question: './img/img_14.jpg',
       answers: ['ツブツブウミウシ', 'イガイガウミウシ', 'トゲトゲウミウシ'],
       correct: 2,
-      color:'orange',
+      color: 'orange',
    },
    {
       question: './img/img_15.jpg',
@@ -126,7 +126,7 @@ const umiushi = [
       question: './img/img_20.jpg',
       answers: ['ミヤコウミウシ', 'アズキウミウシ', 'ニシキウミウシ'],
       correct: 1,
-      color:'black',
+      color: 'black',
    },
    {
       question: './img/img_21.jpg',
@@ -170,12 +170,29 @@ const umiushi = [
       correct: 1,
       color: 'red',
    },
+   {
+      question: './img/img_28.jpg',
+      answers: ['フジイロウミウシ', 'シラヒメウミウシ', 'フジナミウミウシ'],
+      correct: 2,
+      color: 'other',
+   },
+   {
+      question: './img/img_29.jpg',
+      answers: ['サチヨウミウシ', 'ミチヨウミウシ', 'ヤチヨウミウシ'],
+      correct: 1,
+      color: 'purple',
+   },
+   {
+      question: './img/img_30.jpg',
+      answers: ['タケシ', 'アツシ', 'エリザベス'],
+      correct: 0,
+      color: 'brown',
+   },
 
 ];////////配列umiushi_quizここまで////////////////
 
 //遊び方を出す
 $('.help_btn').on('click', function () {
-   console.log('click');
    $('#help_modal').removeClass('delete');
 });
 
@@ -226,7 +243,7 @@ const colors = [
       color: 'オレンジ',
       color_val: 'orange',
    },
-   
+
    {
       color: 'その他',
       color_val: 'other',
@@ -235,8 +252,8 @@ const colors = [
 
 //select部分（色選択）作成のための配列
 const select_color = [];
-for( let i = 0; i < colors.length; i++) {
-   select_color.push('<option value="'+ colors[i].color_val +'">'+ colors[i].color +'</option>')
+for (let i = 0; i < colors.length; i++) {
+   select_color.push('<option value="' + colors[i].color_val + '">' + colors[i].color + '</option>')
 };
 //selectの初期表示を配列の先頭に追加
 select_color.unshift('<option hidden>色を選択</option>');
@@ -254,6 +271,8 @@ $('#color_select').hide();
 $('#name_in').hide();
 //クリアボタンを消しておく
 $('#imgclear_btn').hide();
+//スコアクリアボタンを消しておく
+$('#score_clear').hide();
 
 /////////////////////クイズの動き////////////////////////////////////
 
@@ -275,7 +294,7 @@ function randomSelect(x) {
       // 配列に入れたものは削除する
       quiz.splice(rndInt, 1);
    }
-   
+
    return rndQ;//できあがった配列を返す
 }
 
@@ -288,9 +307,23 @@ console.log(rndQuiz);
 
 //結果判定を入れていく配列
 let result = [];
+//スコア記録用の配列
+let scores = [];
+
+if (localStorage.getItem('quiz')) {//ローカルストレージにスコアがある場合
+   //キーquizをローカルストレージから持ってくる
+   const jsonData = localStorage.getItem("quiz");
+   const data = JSON.parse(jsonData);//dataに代入
+   console.log(data); //コンソールにdataを出す
+
+   for (let i = 0; i < data.length; i++) { //dataからsocoresにpush
+      scores.push(data[i]);
+   }
+
+}
 
 //第何問目かを表示
-$('#quiz_number').text(`Question${result.length +1}`);
+$('#quiz_number').text(`Question${result.length + 1}`);
 //問題の見出しを表示
 $('#quiz_h2').text('このウミウシの名前は？');
 
@@ -326,12 +359,12 @@ $('#close_timeup').on('click', function () {
 $('.next_btn').on('click', function () {//goボタン、nextボタンが押されたら
    $('#go_screen').addClass('delete'); //goスクリーンを消す
 
-   if (result.length < 2) { //問題が終了していれば反応しないようにする
-      
-   
+   if (result.length < 5) { //問題が終了していれば反応しないようにする
+
+
       //タイマー用の変数を定義（秒数）
       let time = 5;
-   
+
       //timeから１ずつ減らしていく関数
       function countDown() {
          time--;// 1引く
@@ -347,11 +380,11 @@ $('.next_btn').on('click', function () {//goボタン、nextボタンが押さ�
       }
       //一秒ごとにcountDown関数を発動
       const countStop = setInterval(countDown, 1000);
-   
+
       //問題が終了しているかのチェックする関数
       function count_check() {
-      
-         if (result.length === 2) { //回答数と問題数が一致したら
+
+         if (result.length === 5) { //回答数と問題数が一致したら
             clearInterval(countStop);//タイマー止める
 
             $('#quiz_number').hide();//ヘッダーを消す
@@ -359,8 +392,8 @@ $('.next_btn').on('click', function () {//goボタン、nextボタンが押さ�
             $('#quiz_h2').text('終了！！！');//終了〜！
             $('#answer_list').hide();//imgを消す
             $('#question').hide();//ulを消す
-         
-         
+
+
             //結果が'ok'のものだけを配列win_countsに入れる
             const win_counts = (result.filter((x) => {
                return x === 'ok';
@@ -368,38 +401,76 @@ $('.next_btn').on('click', function () {//goボタン、nextボタンが押さ�
             );
 
             //結果にokの数を表示
-            $('#result').text(`SCORE${win_counts.length}/${rndQuiz.length}`);
-         
+            $('#result').text(`SCORE:${win_counts.length}`);
+            // スコアクリアを出す
+            $('#score_clear').show();
+            let now = new Date();//日時を取得
+
+
+            scores.push( //配列scoresに追加
+               {
+                  year: now.getFullYear(),//年を取得
+                  month: now.getMonth() + 1,//月を取得
+                  day: now.getDate(),//日を取得
+                  score: win_counts.length,
+               }
+            );
+
+
+            scores.sort(function (a, b) { //scoresを降順にソート
+               if (a.score > b.score) return -1;
+               if (a.score < b.score) return 1;
+               return 0;
+            });
+            console.log(scores);
+
+            //score上位３つを表示
+            if (scores.length > 4) {
+               $('#log_0').text(`${scores[0].year}/${scores[0].month}/${scores[0].day} -SCORE:${scores[0].score}`);
+               $('#log_1').text(`${scores[1].year}/${scores[1].month}/${scores[1].day} -SCORE:${scores[1].score}`);
+               $('#log_2').text(`${scores[2].year}/${scores[2].month}/${scores[2].day} -SCORE:${scores[2].score}`);
+               $('#log_3').text(`${scores[3].year}/${scores[3].month}/${scores[3].day} -SCORE:${scores[3].score}`);
+               $('#log_4').text(`${scores[4].year}/${scores[4].month}/${scores[4].day} -SCORE:${scores[4].score}`);
+            };
+            const jsonData = JSON.stringify(scores); //JSON 形式に変換
+            //console.log(jsonData); //JSONをコンソールに出す
+            localStorage.setItem("quiz", jsonData);//LocalStorage に情報を保存．
+
             //ギャラリーボタンを出す
             $('#gallery_btn').show();
+            //トップボタン表示
+            $('#top_link').show();
+
          } else { //まだ問題が残っているとき
-         
+
             //第何問目かを更新
             $('#quiz_number').text(`Question.${result.length + 1}`);
             //問題の写真を更新
             $('#question').html('<img src="' + rndQuiz[result.length].question + '">');
-         
+
             //回答ボタン部分を更新
             $('#answer_0').text(`${rndQuiz[result.length].answers[0]}`);
             $('#answer_1').text(`${rndQuiz[result.length].answers[1]}`);
             $('#answer_2').text(`${rndQuiz[result.length].answers[2]}`);
          }
-      
       }
-   
+
       ////////////結果判定
+
+      $('button').off('click');//これでボタンイベントが重複しないようにするらしい
+
       $('button').on('click', function (e) {  //クリックイベントの値を取る
          //console.log(e.target.value); //押したボタンのバリューをコンソールに表示
          clearInterval(countStop);
          if (Number(e.target.value) === rndQuiz[result.length].correct) { //valueを数値化
             $("#result_true").removeClass('delete');//一致していれば正解を表示
             result.push('ok'); //配列resultに結果を追加
-            //console.log('ok');
+            console.log('ok');
             ok_ring();
          } else {
             $("#result_false").removeClass('delete');//一致していればはずれを表示
             result.push('ng');//配列resultに結果を追加
-            //console.log('ng');
+            console.log('ng');
             ng_ring();
          }
          //問題が終了しているかのチェック終了していなければ次の問題
@@ -416,7 +487,7 @@ $('.next_btn').on('click', function () {//goボタン、nextボタンが押さ�
 // すべての画像を表示する関数
 function showAllImage() {
    const images = [];//画像表示用の配列を用意
-   
+
    //umiushi_quizのimgをhtmlにして配列に入れる
    for (let i = 0; i < umiushi.length; i++) {
       images.push('<img src="' + umiushi[i].question + '"class="umiushi_img">');
@@ -427,27 +498,29 @@ function showAllImage() {
 }
 
 
-   //ギャラリーボタンが押されたら
-   $('#gallery_btn').on('click', function () {
-   
+//ギャラリーボタンが押されたら
+$('#gallery_btn').on('click', function () {
+
    $('.wrapper').css('background', '#404040'); //背景色を変更
    $('.wrapper').css('color', '#fff'); //文字を白にする
+
    $('#quiz_h2').hide();//終了を消す
    $('#result').hide();//SCOREを消す
-   $('.wrapper').css('height', '2000px');
-   //トップボタン表示
-   $('#top_link').show();
+   $("high_score").hide();//ランキングを消す
+   $('#score_clear').hide();//スコアクリアボタンを消す
+
+   $('.wrapper').css('height', '3000px');
    //色選択を表示
    $('#color_select').show();
    //文字検索を表示
    $('#name_in').show();
    //クリアボタンを表示
    $('#imgclear_btn').show();
-   
-   showAllImage();//すべてのイメージを出す
-   });
 
-   //クリアボタンが押されたら
+   showAllImage();//すべてのイメージを出す
+});
+
+//クリアボタンが押されたら
 $('#imgclear_btn').on('click', function () {
    showAllImage();//すべてのイメージを出す
 })
@@ -469,7 +542,7 @@ $('body').on('click', '#info_name', function () {
 ///////色が選択されたら/////////////
 
 $('body').change('#color_seek', function () {
-   
+
    //選択された値を取得
    let sel_color = $('select').val();
    //値と同じものを配列に入れる
@@ -488,7 +561,7 @@ $('body').change('#color_seek', function () {
    $('#gallery_img').html(images).hide(); //htmlに入れて一度隠す
    $('#gallery_img').fadeIn(1500); //表示
 
-   
+
 });///////色が選択されたら、ここまで
 
 
@@ -540,5 +613,12 @@ function ng_ring() {
    document.getElementById("sound_ng").play();
 }
 
+$('#score_clear').on('click', function () {
+   console.log('clear');
+   localStorage.removeItem("quiz");
+})
 
+let today = new Date();
+let day = today.getDate();
+console.log(day);
 

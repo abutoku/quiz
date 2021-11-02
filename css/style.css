@@ -239,6 +239,34 @@ button {
 }
 
 
+/* 結果画面 */
+
+#result {
+  font-size: 72px;
+  font-weight: bold;
+}
+#high_score {
+  border: 1px solid #404040;
+}
+#high_score p{
+  font-size: 24px;
+}
+
+#score_clear {
+  margin-top: 8px;
+  display: inline-block;
+  height: 32px;
+  width: 120px;
+  cursor: pointer;
+  background: #fff;
+  color:#404040;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
 /* /////////ギャラリーモード /////////*/
 #gallery {
   display: flex;
@@ -320,9 +348,6 @@ button {
 #close_name {
   text-align: center;
 }
-
-
-
 
 /* ////////スマートフォン用///////////// */
 
